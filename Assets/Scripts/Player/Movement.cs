@@ -4,35 +4,52 @@ using UnityEngine;
 
 public class Movement : MonoBehaviour
 {
+    Camera cam;
     Rigidbody rb;
-
-    public float walkSpeed = 1f;
-    public float runSpeed = 5f;
-    public float staminaMeter = 100f;
-
-    public float jumpHeight = 3f;
-
-    public int health = 100;
-
-    public bool isSplatered;
-
-
-
-
-    // Start is called before the first frame update
+    [SerializeField]
+    private float speed;
+    [SerializeField]
+    private float cursorSensitivity;
+    [SerializeField]
+    private float xRot, yRot;
     void Start()
     {
+        cam = Camera.main;
         rb = GetComponent<Rigidbody>();
     }
 
-    // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
-        
+      //  WalkingMovement();
+        MouseMovement();
+
     }
-    void Move() 
+
+    void MouseMovement()
     {
-    
+        Cursor.lockState = CursorLockMode.Locked;
+
+        float mouseX = Input.GetAxis("Mouse X") * cursorSensitivity;
+
+        float mouseY = Input.GetAxis("Mouse Y") * cursorSensitivity;
+
+        xRot -= mouseY;
+
+        yRot += mouseX;
+
+
+        xRot = Mathf.Clamp(xRot, -50, 50);
+        cam.transform.localRotation = Quaternion.Euler(0, 0, 0);
+        gameObject.transform.localRotation = Quaternion.Euler(0, 0, 0);
+    }
+    void WalkingMovement()
+    {
+        float vert = Input.GetAxis("Vertical");
+        float hori = Input.GetAxis("Horizontal");
+        Vector3 pos = (transform.right * hori + transform.forward * vert) * Time.deltaTime * speed;
+        rb.MovePosition(rb.position + pos);
     }
 }
+
+
 
