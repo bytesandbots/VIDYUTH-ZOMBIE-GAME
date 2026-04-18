@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Health
   - Ammo
+  - MAP
   layers:
   - Default
   - TransparentFX
