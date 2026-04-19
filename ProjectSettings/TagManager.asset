@@ -7,7 +7,7 @@ TagManager:
   - Health
   - Ammo
   - MAP
-  - Pressure Plate
+  - Parasite
   layers:
   - Default
   - TransparentFX

@@ -19,6 +19,8 @@ public class Movement : MonoBehaviour
     private float cursorSensitivity;
     [SerializeField]
     private float xAxis, yAxis;
+    [SerializeField]
+    private float health;
     private bool splat;
     void Start()
     {
@@ -27,14 +29,21 @@ public class Movement : MonoBehaviour
 
         //rb is rigidbody
         rb = GetComponent<Rigidbody>();
+
+    
     }
 
     void FixedUpdate()
     {
-        WalkingMovement();
+        if (health > 0) 
+        {
+            WalkingMovement();
+            JumpHeight();
+        }
+        
         MouseMovement();
-        JumpHeight();
 
+        
     }
 
     void MouseMovement()
@@ -81,6 +90,15 @@ public class Movement : MonoBehaviour
         if (Input.GetKey(KeyCode.Space))
         {
             rb.AddForce(vector_from_Despicable_Me * jump );
+        }
+    }
+    void OnCollisionEnter(Collision collision)
+
+    {
+        if (collision.gameObject.CompareTag("Parasite"))
+        {
+            Debug.Log("I said quack quack the pennguin");
+            health -= Random.Range(1,5);
         }
     }
 }
