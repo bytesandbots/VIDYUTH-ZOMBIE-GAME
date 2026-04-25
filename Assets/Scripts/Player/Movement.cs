@@ -38,7 +38,10 @@ public class Movement : MonoBehaviour
         if (health > 0) 
         {
             WalkingMovement();
-            JumpHeight();
+            if (transform.position.y <=2) 
+            {
+                JumpHeight();
+            }
         }
         
         MouseMovement();
@@ -93,14 +96,16 @@ public class Movement : MonoBehaviour
         }
     }
     void OnCollisionEnter(Collision collision)
-
     {
         if (collision.gameObject.CompareTag("Parasite"))
         {
-            Debug.Log("I said quack quack the pennguin");
+            
             health -= Random.Range(1,5);
         }
+
+        
     }
+   
 }
 
 
