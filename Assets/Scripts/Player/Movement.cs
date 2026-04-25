@@ -38,7 +38,7 @@ public class Movement : MonoBehaviour
         if (health > 0) 
         {
             WalkingMovement();
-            if (transform.position.y <=2) 
+            if (transform.position.y <=1.5) 
             {
                 JumpHeight();
             }
@@ -102,11 +102,10 @@ public class Movement : MonoBehaviour
             
             health -= Random.Range(1,5);
         }
-
-        
+        }
     }
    
-}
+
 
 
 
