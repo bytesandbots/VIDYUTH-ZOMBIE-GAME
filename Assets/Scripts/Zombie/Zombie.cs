@@ -28,17 +28,17 @@ public class Zombie : MonoBehaviour
         if (choice == movement[0]) 
         {
             zzz.SetTrigger(choice);
-            parasite.speed = 1;
+            parasite.speed = 40;
         }
         if(choice == movement[1])
         {
             zzz.SetTrigger(choice);
-            parasite.speed = 1;
+            parasite.speed = 10;
         }
         if (choice == movement[2])
         {
             zzz.SetTrigger(choice);
-            parasite.speed = 1;
+            parasite.speed = 20;
         }
 
     }
@@ -48,6 +48,11 @@ public class Zombie : MonoBehaviour
     {
         
         parasite.SetDestination(player.position);
+
+        if(health<=0) 
+        {
+            Destroy(gameObject);
+        }
     }
  
     }

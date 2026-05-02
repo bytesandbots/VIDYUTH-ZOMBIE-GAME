@@ -75,7 +75,7 @@ public class Shooting : MonoBehaviour
         Debug.DrawRay(CrayonOrigin_The_Origin_Of_Crayons, Camera.main.transform.forward * 100f);
         if (Physics.Raycast(CrayonOrigin_The_Origin_Of_Crayons, Camera.main.transform.forward, out hit, 1000f ))
         {
-            Debug.Log("Shot: " + hit.collider.name);
+            //Debug.Log("Shot: " + hit.collider.name);
             Zombie enemy = hit.collider.GetComponent<Zombie>();
             if (enemy != null)
             {
