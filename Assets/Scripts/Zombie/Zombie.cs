@@ -11,6 +11,8 @@ public class Zombie : MonoBehaviour
     public string[] movement = new string[3];
     public string die;
     private string choice;
+    public int health;
+
     public NavMeshAgent parasite;
     public Transform player;
     private Animator zzz;
@@ -26,17 +28,17 @@ public class Zombie : MonoBehaviour
         if (choice == movement[0]) 
         {
             zzz.SetTrigger(choice);
-            parasite.speed = 20;
+            parasite.speed = 1;
         }
         if(choice == movement[1])
         {
             zzz.SetTrigger(choice);
-            parasite.speed = 5;
+            parasite.speed = 1;
         }
         if (choice == movement[2])
         {
             zzz.SetTrigger(choice);
-            parasite.speed = 10;
+            parasite.speed = 1;
         }
 
     }
@@ -44,6 +46,9 @@ public class Zombie : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        
         parasite.SetDestination(player.position);
     }
-}
+ 
+    }
+
