@@ -5,65 +5,11 @@ using UnityEngine;
 using UnityEngine.UI;
 public class Shooting : MonoBehaviour
 {
-    public int pistolMagCount;
-    private int pistolMag;
-    public int pistolMagMax;
-    private int pistolAmmo;
-    public float pistolReloadSpeed = 0.9f;
-    //Reload bools
-    public bool rPressed = false;
-    public bool isReloading = false;
-    public float timer = 0;
-    void Start()
-    {
-        pistolMag = pistolMagMax;
-        pistolAmmo = pistolMagMax * pistolMagCount;
-       
-    }
+    public int bullets;
     void Update()
     {
         SemiAuto();
     }
-    void SemiAuto()
-    {
-        
-        if (pistolMag > 0 || pistolAmmo > 0)
-        {
-
-            if (Input.GetKey(KeyCode.R))
-            {
-                rPressed = true;
-            }
-
-            if ((pistolMag <= 0 || pistolMag < pistolMagMax && rPressed) && pistolAmmo > 0)
-            {
-                //Debug.Log(timer); 
-                timer += Time.deltaTime;
-                if (timer >= pistolReloadSpeed)
-                {
-                    isReloading = false;
-                    rPressed = false;
-                    int remainingAmmo = Mathf.Max(0, pistolAmmo - (pistolMagMax - pistolMag));
-                    // Debug.Log("Ammo Left " + remainingAmmo);
-                    pistolMag = Mathf.Min(pistolAmmo + remainingAmmo, pistolMagMax);
-                    //Debug.Log("Pistol Mag " + pistolMag);
-                    pistolAmmo = remainingAmmo;
-                    timer = 0;
-                }
-            }
-
-            if (!isReloading && pistolMag > 0)
-            {
-                if (Input.GetMouseButtonDown(0))
-                {
-                    pistolMag--;
-                    Shoot();
-
-                }
-            }
-        }
-    }
-
     void Shoot()
     {
 
@@ -73,20 +19,43 @@ public class Shooting : MonoBehaviour
 
         // Perform the raycast
         Debug.DrawRay(CrayonOrigin_The_Origin_Of_Crayons, Camera.main.transform.forward * 100f);
-        if (Physics.Raycast(CrayonOrigin_The_Origin_Of_Crayons, Camera.main.transform.forward, out hit, 1000f ))
+        if (Physics.Raycast(CrayonOrigin_The_Origin_Of_Crayons, Camera.main.transform.forward, out hit, Mathf.Infinity))
         {
-            //Debug.Log("Shot: " + hit.collider.name);
+            Debug.Log("Shot: " + hit.collider.name);
             Zombie enemy = hit.collider.GetComponent<Zombie>();
+            Zombie_Core SomeThing = hit.collider.GetComponent<Zombie_Core>();
+
             if (enemy != null)
             {
                 Debug.Log("Shot: " + hit.collider.name);
                 enemy.health--;
 
             }
+            if (SomeThing != null)
+            {
+                Debug.Log("Shot: " + hit.collider.name);
+                SomeThing.Something--;
+
+            }
         }
     }
 
-}
+    void SemiAuto()
+    {
+       
+            if (bullets > 0)
+            {
+                if (Input.GetMouseButtonDown(0))
+                {
+                Shoot();
+                bullets--;
+                    
+
+                }
+            }
+        }
+    }
+
 
 
 

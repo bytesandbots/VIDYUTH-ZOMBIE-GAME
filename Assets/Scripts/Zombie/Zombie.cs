@@ -12,6 +12,7 @@ public class Zombie : MonoBehaviour
     public string die;
     private string choice;
     public int health;
+    
 
     public NavMeshAgent parasite;
     public Transform player;
@@ -28,17 +29,20 @@ public class Zombie : MonoBehaviour
         if (choice == movement[0]) 
         {
             zzz.SetTrigger(choice);
-            parasite.speed = 40;
+            parasite.speed = 10;
+            health = Random.Range(1, 10);
         }
         if(choice == movement[1])
         {
             zzz.SetTrigger(choice);
-            parasite.speed = 10;
+            parasite.speed = 3;
+            health = Random.Range(1, 10);
         }
         if (choice == movement[2])
         {
             zzz.SetTrigger(choice);
-            parasite.speed = 20;
+            parasite.speed = 5;
+            health = Random.Range(1, 10);
         }
 
     }
