@@ -26,7 +26,7 @@ public class Zombie_Core : MonoBehaviour
     {
         while (true)
         {
-            yield return new WaitForSeconds(5f);
+            yield return new WaitForSeconds(10f);
             Instantiate(something, transform.position, Quaternion.identity);
         }
     }

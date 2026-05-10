@@ -5,9 +5,11 @@ using UnityEngine;
 using UnityEngine.UI;
 public class Shooting : MonoBehaviour
 {
+    public Text Ammmmmmmmmmmmmmmmmmmoooosemicolon;
     public int bullets;
     void Update()
     {
+        Ammmmmmmmmmmmmmmmmmmoooosemicolon.text = "Ammo: " + bullets;
         SemiAuto();
     }
     void Shoot()
@@ -54,6 +56,14 @@ public class Shooting : MonoBehaviour
                 }
             }
         }
+    void OnTriggerEnter(Collider other) 
+    {
+        if (other.gameObject.CompareTag("Ammo"))
+        {
+            bullets += Random.Range(1, 5);
+            Destroy(other.gameObject);
+        }
+    }
     }
 
 

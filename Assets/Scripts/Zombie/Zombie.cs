@@ -12,16 +12,22 @@ public class Zombie : MonoBehaviour
     public string die;
     private string choice;
     public int health;
-    
+    bool dead = false;
+    public int IDK;
+    public GameObject healtho;
+    public GameObject ammo_o;
 
     public NavMeshAgent parasite;
     public Transform player;
     private Animator zzz;
 
+    public BoxCollider MC_Donalds;
+
     
-    // Start is called before the first frame update
     void Start()
     {
+        MC_Donalds = GetComponent<BoxCollider>();
+        IDK = Random.Range(1, 4);
         choice = movement[Random.Range(0, movement.Length)];
         parasite = GetComponent<NavMeshAgent>();
         player = GameObject.FindGameObjectWithTag("Player").transform;
@@ -46,16 +52,37 @@ public class Zombie : MonoBehaviour
         }
 
     }
-
+    IEnumerator DeathAnimation() 
+    {
+        parasite.enabled = false;
+        MC_Donalds.enabled = false;
+        zzz.SetTrigger("Dying");
+        yield return new WaitForSeconds(3.17f);
+        Destroy(gameObject);
+    }
     // Update is called once per frame
     void Update()
     {
-        
+        if (dead) return;
         parasite.SetDestination(player.position);
 
         if(health<=0) 
         {
-            Destroy(gameObject);
+            dead = true;
+            switch (IDK) 
+            {
+                 case 1:
+                    Instantiate(healtho,transform.position + Vector3.up,Quaternion.identity);
+                    break;
+
+                case 2:
+                    Instantiate(ammo_o, transform.position + Vector3.up, Quaternion.identity);
+                    break;
+
+            }
+            StartCoroutine(DeathAnimation());
+
+                 
         }
     }
  

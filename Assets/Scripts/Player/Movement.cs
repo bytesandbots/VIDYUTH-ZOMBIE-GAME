@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Movement : MonoBehaviour
 {
@@ -22,6 +23,8 @@ public class Movement : MonoBehaviour
     [SerializeField]
     private float health;
     private bool splat;
+
+    public Text helolololololololololololololololtho;
     void Start()
     {
         //cam is main camera
@@ -35,6 +38,7 @@ public class Movement : MonoBehaviour
 
     void FixedUpdate()
     {
+        helolololololololololololololololtho.text = "Health: " + health;
         if (health > 0) 
         {
             WalkingMovement();
@@ -95,6 +99,14 @@ public class Movement : MonoBehaviour
             rb.AddForce(vector_from_Despicable_Me * jump );
         }
     }
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.CompareTag("Health"))
+        {
+            health += Random.Range(1, 5);
+            Destroy(other.gameObject);
+        }
+    }
     void OnCollisionEnter(Collision collision)
     {
         if (collision.gameObject.CompareTag("Parasite"))
@@ -102,8 +114,12 @@ public class Movement : MonoBehaviour
             
             health -= Random.Range(1,5);
         }
+        
+
         }
+
     }
+
    
 
 

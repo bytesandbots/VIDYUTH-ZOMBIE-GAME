@@ -1661,6 +1661,9 @@ MonoBehaviour:
   - Crawling
   die: Dying
   health: 1
+  IDK: 0
+  healtho: {fileID: 8163848681498073525, guid: 1e617e98dc11e09458c5d5994fc9e94a, type: 3}
+  ammo_o: {fileID: 2663466882284391953, guid: a87b9ff531dc3ac42ab1467984beb780, type: 3}
   parasite: {fileID: 0}
   player: {fileID: 0}
 --- !u!54 &6681986990485434397
